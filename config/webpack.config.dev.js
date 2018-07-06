@@ -144,7 +144,12 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-
+              plugins: [
+                ['import', [{
+                  libraryName: 'antd',
+                  style: true
+                }]]
+              ],
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
               // directory for faster rebuilds.
@@ -219,7 +224,13 @@ module.exports = {
                 }
               },
               {
-                loader: require.resolve('less-loader')
+                loader: require.resolve('less-loader'),
+                options: {
+                  modules: false,
+                  modifyVars: {
+                    '@primary-color': '#f9c700'
+                  }
+                }
               }
             ]
           },
