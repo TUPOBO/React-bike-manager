@@ -1,5 +1,6 @@
 import React from 'react'
 import Child from './Child'
+import './index.less'
 export default class Life extends React.Component {
   constructor (props) {
     super(props)
@@ -26,7 +27,7 @@ export default class Life extends React.Component {
       color: 'red'
     }
     return (
-      <div style={style}>
+      <div className='container'>
         <p>React</p>
         <button onClick={this.handleClick} style={style}>click</button>
         <button onClick={this.bindHandleClick.bind(this)}>click</button>
