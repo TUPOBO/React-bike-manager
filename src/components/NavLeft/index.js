@@ -5,6 +5,8 @@ import './index.less'
 
 const SubMenu = Menu.SubMenu
 class NavLeft extends Component {
+
+  state = {}
   
   componentWillMount () {
     const menuTreeNode = this.renderMenu(MenuConfig)
