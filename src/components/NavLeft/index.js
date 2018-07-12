@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MenuConfig from '../../config/menuConfig'
 import { Menu } from 'antd'
+import {NavLink} from 'react-router-dom'
 import './index.less'
 
 const SubMenu = Menu.SubMenu
@@ -24,7 +25,11 @@ class NavLeft extends Component {
             {this.renderMenu(item.children)}
           </SubMenu>
         )}
-      return <Menu.Item title={item.title} key={item.key}>{item.title}</Menu.Item>
+      return (
+      <Menu.Item title={item.title} key={item.key}>
+        <NavLink to={item.key}>{item.title}</NavLink>
+      </Menu.Item>
+      )
     })
   }
   
