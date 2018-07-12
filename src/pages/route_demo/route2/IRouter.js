@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import {HashRoute as Router, Route} from 'module'
+import {HashRouter as Router, Route} from 'react-router-dom'
+import Home from './Home'
 import Main from '../route1/Main'
 import About from '../route1/about'
 import Topic from '../route1/topic'
-import Home from './Home'
-class Index extends Component {
+class IRouter extends Component {
   render () {
     return (
       <Router>
@@ -14,9 +14,8 @@ class Index extends Component {
           <Route path='/topics' component={Topic} />
         </Home>
       </Router>
-
     )
   }
 }
 
-export default Index
+export default IRouter
