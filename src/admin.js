@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 import NavLeft from './components/NavLeft'
 import Header from './components/Header'
-import Home from './pages/home'
+// import Home from './pages/home'
 import Footer from './components/Footer'
 
 import './style/comment.less'
