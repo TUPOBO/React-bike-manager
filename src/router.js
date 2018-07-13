@@ -6,6 +6,7 @@ import Admin from './admin'
 import Buttons from './pages/ui/buttons'
 import NoMatch from './pages/nomatch'
 import Modals from './pages/ui/modals'
+import Loadings from './pages/ui/loading'
 // import Home from './pages/home'
 
 class IRouter extends Component {
@@ -19,6 +20,7 @@ class IRouter extends Component {
               <Switch>
                 <Route path='/admin/ui/buttons' component={Buttons} />
                 <Route path='/admin/ui/modals' component={Modals} />
+                <Route path='/admin/ui/loadings' component={Loadings} />
                 {/* <Route path='/admin' component={Home} /> */}
                 <Route component={NoMatch} />
               </Switch>
