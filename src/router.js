@@ -9,6 +9,8 @@ import Modals from './pages/ui/modals'
 import Loadings from './pages/ui/loading'
 import Notices from './pages/ui/notice'
 import Messages from './pages/ui/messages'
+import Tab from './pages/ui/tabs'
+import Gallery from './pages/ui/gallery'
 // import Home from './pages/home'
 
 class IRouter extends Component {
@@ -25,6 +27,8 @@ class IRouter extends Component {
                 <Route path='/admin/ui/loadings' component={Loadings} />
                 <Route path='/admin/ui/notification' component={Notices} />
                 <Route path='/admin/ui/messages' component={Messages} />
+                <Route path='/admin/ui/tabs' component={Tab} />
+                <Route path='/admin/ui/gallery' component={Gallery} />
                 {/* <Route path='/admin' component={Home} /> */}
                 <Route component={NoMatch} />
               </Switch>
