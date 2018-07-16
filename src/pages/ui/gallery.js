@@ -22,7 +22,7 @@ class Gallery extends Component {
 
     const imgList = imgs.map((list) => list.map((item) =>
       <Card
-        cover={<img src={'/gallery/' + item} />}
+        cover={<img src={'/gallery/' + item} alt=''/>}
         style={{marginBottom: 10}}
         onClick={() => this.openGallery(item)}
       >
