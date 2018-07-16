@@ -53,8 +53,8 @@ class Gallery extends Component {
         </Row>
         <Modal
         title={'图片画廊'}
-        width={300}
-        // height={400}
+        width={500}
+        height={400}
         visible={this.state.visible}
         onCancel={()=>this.setState({visible: false})}
         footer={null}
