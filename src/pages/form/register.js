@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import {Card, Form, Input, Icon, Checkbox, Radio, Select, Switch, DatePicker, TimePicker, Upload, message, InputNumber, Button} from 'antd'
-import moment from 'moment'
+import { Button, Card, Checkbox, DatePicker, Form, Icon, Input, InputNumber, message, Radio, Select, Switch, TimePicker, Upload } from 'antd';
+import moment from 'moment';
+import React, { Component } from 'react';
 const FormItem = Form.Item
 const RadioGroup = Radio.Group
 const Option = Select.Option
@@ -216,7 +216,7 @@ class FormRegister extends Component {
                     action='//jsonplaceholder.typicode.com/posts/'
                     onChange={this.handleChange}
                   >
-                  {this.state.useImg ? <img src={this.state.useImg} /> : <Icon type='plus'/>}
+                  {this.state.useImg ? <img src={this.state.useImg} alt=''/> : <Icon type='plus'/>}
                   </Upload>
                 )
               }
