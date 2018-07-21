@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import {Card, Table} from 'antd'
+import axios from './../../axios'
 class BasicTable extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-
-    }
+  state = {
+    dataSource2: []
   }
 
   componentDidMount () {
@@ -42,6 +40,25 @@ class BasicTable extends Component {
       }
     ]
     this.setState({ dataSource })
+    this.request()
+  }
+
+
+  request = () => {
+    axios.ajax({
+      url: '/table/list',
+      data: {
+        params: {
+          page: 1
+        }
+      }
+    }).then((res) => {
+      if (res.code === 0) {
+        this.setState({
+          dataSource2: res.result
+        })
+      }
+    })
   }
 
   render () {
@@ -88,6 +105,18 @@ class BasicTable extends Component {
             bordered
             columns={columns}
             dataSource={this.state.dataSource}
+            pagination={false}
+          />
+        </Card>
+
+        <Card
+          title='动态数据渲染表格'
+          style={{margin: '10px 0'}}
+        >
+          <Table
+            bordered
+            columns={columns}
+            dataSource={this.state.dataSource2}
             pagination={false}
           />
         </Card>
