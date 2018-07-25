@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Card, Table} from 'antd'
+import {Card, Table, Modal} from 'antd'
 import axios from './../../axios'
 class BasicTable extends Component {
   state = {
@@ -39,6 +39,9 @@ class BasicTable extends Component {
         time: '09:00'
       }
     ]
+    dataSource.map((item, index) => {
+      item.key = index
+    })
     this.setState({ dataSource })
     this.request()
   }
@@ -50,14 +53,30 @@ class BasicTable extends Component {
       data: {
         params: {
           page: 1
-        }
+        },
+        isShowLoading: false  
       }
     }).then((res) => {
       if (res.code === 0) {
+        res.result.map((item, index) => {
+          item.key = index
+        })
         this.setState({
           dataSource2: res.result
         })
       }
+    })
+  }
+
+  onRowClick = (record, index) => {
+    let selectKey = [ index ]
+    Modal.info({
+      title: '信息',
+      content: `用户名： ${record.userName} \n 用户爱好：${record.interest}`
+    })
+    this.setState({
+      selectedRowKeys: selectKey,
+      selectedItem: record
     })
   }
 
@@ -81,7 +100,7 @@ class BasicTable extends Component {
       {
         title: '状态',
         dataIndex: 'state',
-        reder(state) {
+        render(state) {
           let config = {
             '1': '咸鱼一条',
             '2': '风华浪子',
@@ -106,6 +125,7 @@ class BasicTable extends Component {
             '7': '桌球',
             '8': '麦霸',
           }
+          return config[interest]
         }
       },
       {
@@ -121,6 +141,11 @@ class BasicTable extends Component {
         dataIndex: 'time'
       }
     ]
+    const selectedRowKeys = this.state.selectedRowKeys
+    const rowSelection = {
+      type: 'radio',
+      selectedRowKeys
+    }
     return (
       <div>
         <Card
@@ -135,7 +160,7 @@ class BasicTable extends Component {
         </Card>
 
         <Card
-          title='动态数据渲染表格'
+          title='动态数据渲染表格-Mooc'
           style={{margin: '10px 0'}}
         >
           <Table
@@ -143,6 +168,26 @@ class BasicTable extends Component {
             columns={columns}
             dataSource={this.state.dataSource2}
             pagination={false}
+          />
+        </Card>
+
+        <Card
+          title='Mooc-单选'
+          style={{margin: '10px 0'}}
+        >
+          <Table
+            bordered
+            rowSelection= {rowSelection}
+            columns={columns}
+            dataSource={this.state.dataSource2}
+            pagination={false}
+            onRow={(record, index) => {
+              return {
+                onClick: () => {
+                  this.onRowClick(record, index)
+                }
+              }
+            }}
           />
         </Card>
       </div>
