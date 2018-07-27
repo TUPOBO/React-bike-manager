@@ -52,10 +52,6 @@ export default class Axios {
             })
           }
         } else {
-          if (options.data && options.data.isShowLoading !== false) {
-            loading = document.getElementById('ajaxLoading')
-            loading.style.display = 'none'
-          }
           reject(response.data)
         }
       })

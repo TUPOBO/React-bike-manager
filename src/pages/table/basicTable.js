@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Card, Table, Modal, Button, message} from 'antd'
 import axios from './../../axios'
-import Utils from '../../utils/utils';
+import Utils from '../../utils/utils'
 class BasicTable extends Component {
   state = {
     dataSource2: []
@@ -44,9 +44,9 @@ class BasicTable extends Component {
         time: '09:00'
       }
     ]
-    dataSource.map((item, index) => {
+    dataSource.map((item, index) => (
       item.key = index
-    })
+    ))
     this.setState({ dataSource })
     this.request()
   }
@@ -64,9 +64,9 @@ class BasicTable extends Component {
       }
     }).then((res) => {
       if (res.code === 0) {
-        res.result.list.map((item, index) => {
+        res.result.list.map((item, index) => (
           item.key = index
-        })
+        ))
         this.setState({
           dataSource2: res.result.list,
           selectedRowKeys: [],
@@ -97,9 +97,9 @@ class BasicTable extends Component {
   handleDelete = () => {
     let rows = this.state.selectedRows
     let ids = []
-    rows.map((item) => {
+    rows.map((item) => (
       ids.push(item.id)
-    })
+    ))
     Modal.confirm({
       title: '删除提示',
       content: `您确定要删除这些数据吗？ ${ids.join(',')}`,
