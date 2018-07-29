@@ -88,11 +88,17 @@ class City extends Component {
 			},
 			{
 				title: '用车模式',
-				dataIndex: 'mode'
+				dataIndex: 'mode',
+				render: (mode)=>(
+					mode === 1? '禁停区':'停车点'
+				)
 			},
 			{
 				title: '运营模式',
-				dataIndex: 'op_mode'
+				dataIndex: 'op_mode',
+				render: (op_mode) => (
+					op_mode === 1 ? '自营': '加盟'
+				)
 			},
 			{
 				title: '授权加盟商',
@@ -115,7 +121,8 @@ class City extends Component {
 			},
 			{
 				title: '操作时间',
-				dataIndex: 'update_time'
+				dataIndex: 'update_time',
+				render: Utils.formateDate
 			},
 			{
 				title: '操作人',
