@@ -16,6 +16,7 @@ import FormLogin from './pages/form/login'
 import FormRegister from './pages/form/register'
 import BasicTable from './pages/table/basicTable'
 import HighTable from './pages/table/highTable'
+import City from './pages/city'
 // import Home from './pages/home'
 
 class IRouter extends Component {
@@ -39,6 +40,7 @@ class IRouter extends Component {
                 <Route path='/admin/form/reg' component={FormRegister} />
                 <Route path='/admin/table/basic' component={BasicTable} />
                 <Route path='/admin/table/high' component={HighTable} />
+                <Route path='/admin/city' component={City} />
                 {/* <Route path='/admin' component={Home} /> */}
                 <Route component={NoMatch} />
               </Switch>
