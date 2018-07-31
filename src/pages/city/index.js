@@ -63,11 +63,12 @@ class City extends Component {
 				}
 			})
 			.then((res) => {
+				let list = res.result.item_list.map((item, index) => {
+					item.key = index
+					return item
+				})
 				this.setState({
-					list: res.result.item_list.map((item, index) => {
-						item.key = index
-						return item
-					}),
+					list,
 					pagination: Utils.pagination(res, (current) => {
 						_this.params.page = current
 						_this.requestList()
