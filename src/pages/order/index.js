@@ -100,7 +100,7 @@ class Order extends Component {
 				}
 			})
 	}
-
+	//存储点击行信息
 	onRowClick = (record, index) => {
 		let selectKey = [ index ]
 
@@ -108,6 +108,19 @@ class Order extends Component {
 			selectedRowKeys: selectKey,
 			selectedItem: record
 		})
+	}
+
+	//打开订单详情页
+	openOrderDetails = () => {
+		let item = this.state.selectedItem
+		if (!item) {
+			Modal.info({
+				title: '提示',
+				content: '请先选择一条订单'
+			})
+			return
+		}
+		window.open(`/#/common/order/detail/${item.id}`, '_blank')
 	}
 
 	render() {
@@ -132,7 +145,7 @@ class Order extends Component {
 				title: '里程',
 				dataIndex: 'distance',
 				render(distance) {
-					return distance/1000 + 'KM'
+					return distance / 1000 + 'KM'
 				}
 			},
 			{
@@ -175,7 +188,7 @@ class Order extends Component {
 					<FilterForm />
 				</Card>
 				<Card style={{ marginTop: 10 }}>
-					<Button type="primary"> 订单详情 </Button>
+					<Button type="primary" onClick={this.openOrderDetails}> 订单详情 </Button>
 					<Button type="primary" style={{ marginLeft: 10 }} onClick={this.handleConfirm}>
 						结束订单
 					</Button>
