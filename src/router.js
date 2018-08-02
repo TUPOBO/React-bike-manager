@@ -19,6 +19,7 @@ import HighTable from './pages/table/highTable'
 import City from './pages/city'
 import Order from './pages/order'
 import Common from './common'
+import Detail from './pages/order/detail'
 // import Home from './pages/home'
 
 class IRouter extends Component {
@@ -51,7 +52,7 @@ class IRouter extends Component {
           )} />
           <Route path='/common' render={() => (
             <Common>
-              <Route path='/common/order/detail/:orderId' component={Login} />
+              <Route path='/common/order/detail/:orderId' component={Detail} />
             </Common>
           )} />
         </App>

@@ -10,7 +10,7 @@ class Common extends Component {
         <Row className='simple-page'>
           <Header menuType='second' />
         </Row>
-        <Row className='content'>{this.props.children}</Row>
+        <Row className='content' style={{textAlign: 'left'}}>{this.props.children}</Row>
       </div>
     )
   }
