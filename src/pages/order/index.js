@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { Card, Button, Table, Form, Select, Modal, message, DatePicker } from 'antd'
+import { Card, Button, Table, Form, Modal, message } from 'antd'
 import axios from './../../axios/index'
 import Utils from './../../utils/utils'
 import './../../style/comment.less'
-
+import BaseForm from '../../components/BaseForm'
 const FormItem = Form.Item
-const Option = Select.Option
 
 class Order extends Component {
 	constructor(props) {
@@ -17,9 +16,43 @@ class Order extends Component {
 		this.params = {
 			page: 1
 		}
+		this.formList = [
+			{
+				type: 'SELECT',
+				label: '城市',
+				field: 'city',
+				initialValue: '1',
+				width: 80,
+				placeholder: '全部',
+				list: [
+					{ id: '0', name: '全部' },
+					{ id: '1', name: '北京' },
+					{ id: '2', name: '天津' },
+					{ id: '3', name: '上海' }
+				]
+			},
+			{
+				type: '时间查询'
+			},
+			{
+				type: 'SELECT',
+				label: '订单状态',
+				field: 'order_status',
+
+				initialValue: '1',
+				width: 100,
+				placeholder: '全部',
+				list: [ { id: '0', name: '全部' }, { id: '1', name: '进行中' }, { id: '2', name: '结束行程' } ]
+			}
+		]
 	}
 
 	componentWillMount() {
+		this.requestList()
+	}
+
+	handleFilter = (params) => {
+		this.params = params
 		this.requestList()
 	}
 
@@ -29,9 +62,7 @@ class Order extends Component {
 			.ajax({
 				url: '/order/list',
 				data: {
-					params: {
-						page: this.params.page
-					}
+					params: this.params
 				}
 			})
 			.then((res) => {
@@ -185,10 +216,13 @@ class Order extends Component {
 		return (
 			<div>
 				<Card>
-					<FilterForm />
+					<BaseForm formList={this.formList} filterSubmit={this.handleFilter} />
 				</Card>
 				<Card style={{ marginTop: 10 }}>
-					<Button type="primary" onClick={this.openOrderDetails}> 订单详情 </Button>
+					<Button type="primary" onClick={this.openOrderDetails}>
+						{' '}
+						订单详情{' '}
+					</Button>
 					<Button type="primary" style={{ marginLeft: 10 }} onClick={this.handleConfirm}>
 						结束订单
 					</Button>
@@ -240,66 +274,66 @@ class Order extends Component {
 	}
 }
 
-class FilterForm extends Component {
-	render() {
-		const { getFieldDecorator } = this.props.form
+// class FilterForm extends Component {
+// 	render() {
+// 		const { getFieldDecorator } = this.props.form
 
-		return (
-			<Form layout="inline">
-				<FormItem label="城市">
-					{getFieldDecorator('city_id')(
-						<Select
-							style={{
-								width: 100
-							}}
-							placeholder="全部"
-						>
-							<Option value=""> 全部 </Option>
-							<Option value="1"> 北京市 </Option>
-							<Option value="2"> 天津市 </Option>
-							<Option value="3"> 深圳市 </Option>
-						</Select>
-					)}
-				</FormItem>
+// 		return (
+// 			<Form layout="inline">
+// 				<FormItem label="城市">
+// 					{getFieldDecorator('city_id')(
+// 						<Select
+// 							style={{
+// 								width: 100
+// 							}}
+// 							placeholder="全部"
+// 						>
+// 							<Option value=""> 全部 </Option>
+// 							<Option value="1"> 北京市 </Option>
+// 							<Option value="2"> 天津市 </Option>
+// 							<Option value="3"> 深圳市 </Option>
+// 						</Select>
+// 					)}
+// 				</FormItem>
 
-				<FormItem label="订单时间">
-					{getFieldDecorator('start_time')(<DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />)}
-					{getFieldDecorator('end_time')(<DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />)}
-				</FormItem>
+// 				<FormItem label="订单时间">
+// 					{getFieldDecorator('start_time')(<DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />)}
+// 					{getFieldDecorator('end_time')(<DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />)}
+// 				</FormItem>
 
-				<FormItem>
-					{getFieldDecorator('end_time')(<DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />)}
-				</FormItem>
-				<FormItem label="订单状态">
-					{getFieldDecorator('op_mode')(
-						<Select
-							placeholder="全部"
-							style={{
-								width: 80
-							}}
-						>
-							<Option value=""> 全部 </Option>
-							<Option value="1"> 进行中 </Option>
-							<Option value="2"> 结束行程 </Option>
-						</Select>
-					)}
-				</FormItem>
+// 				<FormItem>
+// 					{getFieldDecorator('end_time')(<DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />)}
+// 				</FormItem>
+// 				<FormItem label="订单状态">
+// 					{getFieldDecorator('order_status')(
+// 						<Select
+// 							placeholder="全部"
+// 							style={{
+// 								width: 80
+// 							}}
+// 						>
+// 							<Option value=""> 全部 </Option>
+// 							<Option value="1"> 进行中 </Option>
+// 							<Option value="2"> 结束行程 </Option>
+// 						</Select>
+// 					)}
+// 				</FormItem>
 
-				<FormItem>
-					<Button
-						type="primary"
-						style={{
-							margin: '0 20px'
-						}}
-					>
-						查询
-					</Button>
-					<Button> 重置 </Button>
-				</FormItem>
-			</Form>
-		)
-	}
-}
+// 				<FormItem>
+// 					<Button
+// 						type="primary"
+// 						style={{
+// 							margin: '0 20px'
+// 						}}
+// 					>
+// 						查询
+// 					</Button>
+// 					<Button> 重置 </Button>
+// 				</FormItem>
+// 			</Form>
+// 		)
+// 	}
+// }
 
 export default Order
-FilterForm = Form.create({})(FilterForm)
+// FilterForm = Form.create({})(FilterForm)
