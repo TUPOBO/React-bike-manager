@@ -4,6 +4,8 @@ import axios from './../../axios/index'
 import Utils from './../../utils/utils'
 import './../../style/comment.less'
 import BaseForm from '../../components/BaseForm'
+import ETable from './../../components/ETable'
+
 const FormItem = Form.Item
 
 class Order extends Component {
@@ -58,7 +60,7 @@ class Order extends Component {
 
 	requestList = () => {
 		let _this = this
-		axios.requestList(this, '/order/list', this.params,true)
+		axios.requestList(this, '/order/list', this.params, true)
 	}
 
 	// 订单确认
@@ -209,7 +211,14 @@ class Order extends Component {
 					</Button>
 				</Card>
 				<div className="content-wrap">
-					<Table
+					<ETable
+						columns={columns}
+						dataSource={this.state.list}
+						pagination={this.state.pagination}
+						selectedRowKeys={this.state.selectedRowKeys}
+						updateSelectedItem={Utils.updateSelectedItem.bind(this)}
+					/>
+					{/* <Table
 						bordered
 						columns={columns}
 						dataSource={this.state.list}
@@ -222,7 +231,7 @@ class Order extends Component {
 								}
 							}
 						}}
-					/>
+					/> */}
 				</div>
 				<Modal
 					title="结束订单"
@@ -254,6 +263,5 @@ class Order extends Component {
 		)
 	}
 }
-
 
 export default Order
