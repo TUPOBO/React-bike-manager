@@ -35,7 +35,7 @@ class FilterForm extends Component {
 				} else if (item.type === 'INPUT') {
 					const INPUT = (
 						<FormItem label={label} key={field}>
-							{getFieldDecorator([ field ], {
+							{getFieldDecorator(field, {
 								initialValue: initialValue
 							})(<Input type="text" placeholder={placeHolder} />)}
 						</FormItem>
@@ -44,7 +44,7 @@ class FilterForm extends Component {
 				} else if (item.type === 'SELECT') {
 					const SELECT = (
 						<FormItem label={label} key={field}>
-							{getFieldDecorator([ field ], {
+							{getFieldDecorator(field, {
 								initialValue: initialValue
 							})(
 								<Select
@@ -62,7 +62,7 @@ class FilterForm extends Component {
 				} else if (item.type === 'CHECKBOX') {
 					const CHECKBOX = (
 						<FormItem label={label} key={field}>
-							{getFieldDecorator([ field ], {
+							{getFieldDecorator(field, {
 								valuePropName: 'checked',
 								initialValue: initialValue // true | false
 							})(<Checkbox>{label}</Checkbox>)}

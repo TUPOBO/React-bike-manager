@@ -114,15 +114,6 @@ class Order extends Component {
 				}
 			})
 	}
-	//存储点击行信息
-	onRowClick = (record, index) => {
-		let selectKey = [ index ]
-
-		this.setState({
-			selectedRowKeys: selectKey,
-			selectedItem: record
-		})
-	}
 
 	//打开订单详情页
 	openOrderDetails = () => {
@@ -216,22 +207,11 @@ class Order extends Component {
 						dataSource={this.state.list}
 						pagination={this.state.pagination}
 						selectedRowKeys={this.state.selectedRowKeys}
+						selectedItem={this.state.selectedItem}
+						selectedIds={this.state.selectedIds}
 						updateSelectedItem={Utils.updateSelectedItem.bind(this)}
+						// rowSelection={'checkbox'}
 					/>
-					{/* <Table
-						bordered
-						columns={columns}
-						dataSource={this.state.list}
-						pagination={this.state.pagination}
-						rowSelection={rowSelection}
-						onRow={(record, index) => {
-							return {
-								onClick: () => {
-									this.onRowClick(record, index)
-								}
-							}
-						}}
-					/> */}
 				</div>
 				<Modal
 					title="结束订单"
