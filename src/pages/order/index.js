@@ -194,8 +194,7 @@ class Order extends Component {
 				</Card>
 				<Card style={{ marginTop: 10 }}>
 					<Button type="primary" onClick={this.openOrderDetails}>
-						{' '}
-						订单详情{' '}
+						订单详情
 					</Button>
 					<Button type="primary" style={{ marginLeft: 10 }} onClick={this.handleConfirm}>
 						结束订单
