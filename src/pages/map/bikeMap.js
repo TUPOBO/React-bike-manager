@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Form } from 'antd'
+import { Card } from 'antd'
 import BaseForm from './../../components/BaseForm'
 import axios from './../../axios'
 
@@ -76,26 +76,26 @@ class BikeMap extends Component {
 		this.map.centerAndZoom(endPoint, 11)
 
 		// 绘制起点坐标
-		// let startPointIcon = new BMap.Icon(
-		// 	'/assets/start_point.png',
-		// 	new BMap.Size((36, 42), {
-		// 		imageSize: new BMap.Size(36, 42),
-		// 		anchor: new BMap.Size(18, 42)
-		// 	})
-		// )
-		// let bikeStartMarker = new BMap.Marker(startPoint, { icon: startPointIcon })
-		// this.map.addOverlay(bikeStartMarker)
+		let startPointIcon = new BMap.Icon(
+			'/assets/start_point.png',
+			new BMap.Size((36, 42), {
+				imageSize: new BMap.Size(36, 42),
+				anchor: new BMap.Size(18, 42)
+			})
+		)
+		let bikeStartMarker = new BMap.Marker(startPoint, { icon: startPointIcon })
+		this.map.addOverlay(bikeStartMarker)
 
-		// // 绘制终点坐标
-		// let endPointIcon = new BMap.Icon(
-		// 	'/assets/end_point.png',
-		// 	new BMap.Size((36, 42), {
-		// 		anchor: new BMap.Size(10, 42),
-		// 		imageSize: new BMap.Size(36, 42)
-		// 	})
-		// )
-		// let bikeEndMarker = new BMap.Marker(startPoint, { icon: endPointIcon })
-		// this.map.addOverlay(bikeEndMarker)
+		// 绘制终点坐标
+		let endPointIcon = new BMap.Icon(
+			'/assets/end_point.png',
+			new BMap.Size((36, 42), {
+				anchor: new BMap.Size(10, 42),
+				imageSize: new BMap.Size(36, 42)
+			})
+		)
+		let bikeEndMarker = new BMap.Marker(startPoint, { icon: endPointIcon })
+		this.map.addOverlay(bikeEndMarker)
 
 		//绘制车辆行驶路线
 		let routeList = []

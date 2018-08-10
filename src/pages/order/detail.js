@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Card} from 'antd'
 import axios from './../../axios/index'
-import Utils from './../../utils/utils'
 import './../../style/comment.less'
 import './detail.less'
 
