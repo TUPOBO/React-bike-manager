@@ -58,9 +58,7 @@ class Detail extends Component {
 
 	// 绘制用户的行驶路径
 	drawBikeRoute = (positionList) => {
-		let map = this.map
-		let startPoint = ''
-		let endPoint = ''
+
 		if (positionList.length > 0) {
 			// 绘制起点坐标icon
 			let first = positionList[0]
